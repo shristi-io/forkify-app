@@ -1,9 +1,6 @@
 import icons from "url:../../img/icons.svg"; // In parcel 2, we need to mention "url:" infront of the source path
 import fracty from 'fracty';
 
-// Example usage:
-const quantity = fracty(ingredient.quantity);
-import View from "./view.js";
 
 class RecipeView extends View {
   _parentElement = document.querySelector(".recipe");
