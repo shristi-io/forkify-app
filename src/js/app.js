@@ -1,6 +1,5 @@
 "use strict";
 
-import { Fraction } from 'fractional';
 import { async } from "regenerator-runtime";
 import * as model from "./model.js";
 import recipeView from "./views/recipeview.js";
