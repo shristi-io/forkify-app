@@ -125,20 +125,19 @@ class RecipeView extends View {
     return this._data.ingredients.reduce((accu, ingredient) => {
       return `
           ${accu}
-
           <li class="recipe__ingredient">
-      <svg class="recipe__icon">
-        <use href="${icons}#icon-check"></use>
-      </svg>
-      <div class="recipe__quantity">${
-        ingredient.quantity ? new fracty(ingredient.quantity) : ""
-      }</div>
-      <div class="recipe__description">
-        <span class="recipe__unit">${ingredient.unit}</span>
-        ${ingredient.description}
-      </div>
-    </li>
-          `;
+            <svg class="recipe__icon">
+              <use href="${icons}#icon-check"></use>
+            </svg>
+            <div class="recipe__quantity">${
+              ingredient.quantity ? fracty(ingredient.quantity) : ""
+            }</div>
+            <div class="recipe__description">
+              <span class="recipe__unit">${ingredient.unit}</span>
+              ${ingredient.description}
+            </div>
+          </li>
+      `;
     }, "");
   }
 
