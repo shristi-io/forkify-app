@@ -165,12 +165,31 @@ class RecipeView extends View {
       return this.renderError();
 
     this._data = data;
-    const markup = this._generateIngredients();
-    document.querySelector(".recipe__ingredient-list").innerHTML = markup;
-    const buttonMarkup = this._generateButtons();
-    document.querySelector(".recipe__info-buttons").innerHTML = buttonMarkup;
-    document.querySelector(".recipe__info-data--people").textContent =
-      data.servings;
+    const newMarkup = this._generateMarkup();
+
+    // Create a virtual DOM in memory to compare with the actual DOM
+    const newDOM = document.createRange().createContextualFragment(newMarkup);
+    const newElements = Array.from(newDOM.querySelectorAll('*'));
+    const curElements = Array.from(this._parentElement.querySelectorAll('*'));
+
+    newElements.forEach((newEl, i) => {
+      const curEl = curElements[i];
+
+      // Update changed TEXT
+      if (
+        !newEl.isEqualNode(curEl) &&
+        newEl.firstChild?.nodeValue.trim() !== ''
+      ) {
+        curEl.textContent = newEl.textContent;
+      }
+
+      // Update changed ATTRIBUTES
+      if (!newEl.isEqualNode(curEl)) {
+        Array.from(newEl.attributes).forEach(attr =>
+          curEl.setAttribute(attr.name, attr.value)
+        );
+      }
+    });
   }
 }
 
