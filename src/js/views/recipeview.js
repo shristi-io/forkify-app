@@ -71,7 +71,7 @@ class RecipeView extends View {
       <span class="recipe__info-text">servings</span>
 
       <div class="recipe__info-buttons">
-        ${this._generateButtons()};
+        ${this._generateButtons()}
       </div>
     </div>
 
@@ -131,7 +131,7 @@ class RecipeView extends View {
         <use href="${icons}#icon-check"></use>
       </svg>
       <div class="recipe__quantity">${
-        ingredient.quantity ? new Fraction(ingredient.quantity).toString() : ""
+        ingredient.quantity ? new fracty(ingredient.quantity) : ""
       }</div>
       <div class="recipe__description">
         <span class="recipe__unit">${ingredient.unit}</span>
